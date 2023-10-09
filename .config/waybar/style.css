@@ -9,32 +9,21 @@
 
 window#waybar {
     background-color: transparent;
-    color: #e5e9f0;
     transition-property: background-color;
     transition-duration: .5s;
     margin: 0;
 }
 
+window#waybar.nord {
+    color: #e5e9f0;
+}
+
+window#waybar.nightfly {
+    color: #d6deeb;
+}
+
 window#waybar.hidden {
     opacity: 0.2;
-}
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3b4252;
-}
-
-window#waybar.chromium {
-    background-color: #2e3440;
-    border: none;
 }
 
 button {
@@ -50,13 +39,20 @@ button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
     background: inherit;
-    /* box-shadow: inset 0 -3px #e5e9f0; */
 }
 
 #workspaces button {
     padding: 0 5px;
+}
+
+.nord #workspaces button {
     color: #2e3440;
     background-color: #e5e9f0;
+}
+
+.nightfly #workspaces button {
+    color: #1d3b53;
+    background-color: #d6deeb;
 }
 
 #workspaces button:first-child {
@@ -71,20 +67,36 @@ button:hover {
     padding-right: 8px;
 }
 
-#workspaces button:hover {
+.nord #workspaces button:hover {
     background-color: #88c0d0;
 }
 
-#workspaces button.active {
+.nord #workspaces button.active {
     background-color: #81a1c1;
 }
 
-#workspaces button.urgent {
+.nord #workspaces button.urgent {
     background-color: #bf616a;
 }
 
-#mode {
+.nord #mode {
     background-color: #4c566a;
+}
+
+.nightfly #workspaces button:hover {
+    background-color: #b2ceee;
+}
+
+.nightfly #workspaces button.active {
+    background-color: #82aaff;
+}
+
+.nightfly #workspaces button.urgent {
+    background-color: #fc514e;
+}
+
+.nightfly #mode {
+    background-color: #1d3b53;
 }
 
 #clock,
@@ -104,8 +116,45 @@ button:hover {
 #scratchpad,
 #mpd {
     padding: 0 15px;
-    color: #e5e9f0;
     border-radius: 20px;
+}
+
+.nord #clock,
+.nord #battery,
+.nord #cpu,
+.nord #memory,
+.nord #disk,
+.nord #temperature,
+.nord #backlight,
+.nord #network,
+.nord #pulseaudio,
+.nord #wireplumber,
+.nord #custom-media,
+.nord #tray,
+.nord #mode,
+.nord #idle_inhibitor,
+.nord #scratchpad,
+.nord #mpd {
+    color: #e5e9f0;
+}
+
+.nord #clock,
+.nord #battery,
+.nord #cpu,
+.nord #memory,
+.nord #disk,
+.nord #temperature,
+.nord #backlight,
+.nord #network,
+.nord #pulseaudio,
+.nord #wireplumber,
+.nord #custom-media,
+.nord #tray,
+.nord #mode,
+.nord #idle_inhibitor,
+.nord #scratchpad,
+.nord #mpd {
+    color: #d6deeb;
 }
 
 #window,
@@ -123,87 +172,173 @@ button:hover {
     margin-right: 0;
 }
 
-#clock {
+.nord #clock {
     background-color: #4c566a;
 }
 
-#battery {
+.nord #battery {
     background-color: #e5e9f0;
     color: #2e3440;
 }
 
-#battery.charging, #battery.plugged {
+.nord #battery.charging,
+.nord #battery.plugged {
     background-color: #a3be8c;
     color: #2e3440;
 }
 
-@keyframes blink {
+.nightfly #clock {
+    background-color: #1d3b53;
+}
+
+.nightfly #battery {
+    background-color: #d6deeb;
+    color: #1d3b53;
+}
+
+.nightfly #battery.charging,
+.nightfly #battery.plugged {
+    background-color: #a1cd5e;
+    color: #1d3b53;
+}
+
+@keyframes blink-nord {
     to {
         background-color: #e5e9f0;
         color: #2e3440;
     }
 }
 
+@keyframes blink-nightfly {
+    to {
+        background-color: #d6deeb;
+        color: #1d3b53;
+    }
+}
+
 #battery.critical:not(.charging) {
-    background-color: #bf616a;
-    color: #e5e9f0;
-    animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-label:focus {
+.nord #battery.critical:not(.charging) {
+    background-color: #bf616a;
+    color: #e5e9f0;
+    animation-name: blink-nord;
+}
+
+.nightfly #battery.critical:not(.charging) {
+    background-color: #fc514e;
+    color: #d6deeb;
+    animation-name: blink-nightfly;
+}
+
+.nord label:focus {
     background-color: #2e3440;
 }
 
-#cpu {
+.nord #cpu {
     background-color: #a3be8c;
     color: #2e3440;
 }
 
-#memory {
+.nord #memory {
     background-color: #b48ead;
     color: #2e3440;
 }
 
-#disk {
+.nord #disk {
     background-color: #d08770;
     color: #2e3440;
 }
 
-#backlight {
+.nord #backlight {
     background-color: #90b1b1;
     color: #2e3440;
 }
 
-#network {
+.nord #network {
     background-color: #5e81ac;
     color: #2e3440;
 }
 
-#network.disconnected {
+.nord #network.disconnected {
     background-color: #bf616a;
     color: #2e3440;
 }
 
-#pulseaudio {
+.nord #pulseaudio {
     background-color: #ebcb8b;
     color: #2e3440;
 }
 
-#pulseaudio.muted {
+.nord #pulseaudio.muted {
     background-color: #8fbcbb;
     color: #2e3440;
 }
 
-#temperature {
+.nord #temperature {
     background-color: #d08770;
     color: #2e3440;
 }
 
-#temperature.critical {
+.nord #temperature.critical {
     background-color: #eb4d4b;
     color: #2e3440;
+}
+
+.nightfly label:focus {
+    color: #1d3b53;
+}
+
+.nightfly #cpu {
+    background-color: #a1cd5e;
+    color: #1d3b53;
+}
+
+.nightfly #memory {
+    background-color: #c792ea;
+    color: #1d3b53;
+}
+
+.nightfly #disk {
+    background-color: #ecc48d;
+    color: #1d3b53;
+}
+
+.nightfly #backlight {
+    background-color: #7fdbca;
+    color: #1d3b53;
+}
+
+.nightfly #network {
+    background-color: #82aaff;
+    color: #1d3b53;
+}
+
+.nightfly #network.disconnected {
+    background-color: #fc514e;
+    color: #1d3b53;
+}
+
+.nightfly #pulseaudio {
+    background-color: #e3d18a;
+    color: #1d3b53;
+}
+
+.nightfly #pulseaudio.muted {
+    background-color: #7fdbca;
+    color: #1d3b53;
+}
+
+.nightfly #temperature {
+    background-color: #ecc48d;
+    color: #1d3b53;
+}
+
+.nightfly #temperature.critical {
+    background-color: #eb4d4b;
+    color: #1d3b53;
 }
