@@ -25,11 +25,16 @@ call SourceIfExists("~/.vim/functions.vim")
 
 " Visuals ------------------------------------------------------------------ {{{
 set termguicolors
-let g:nord_italic = 1
-let g:nord_underline = 1
-let g:nord_italic_comments = 1
-let g:palenight_terminal_italics = 1
-silent! colorscheme nord
+
+if $SESSION_THEME == "nightfly"
+    silent! colorscheme nightfly
+else
+    let g:nord_italic = 1
+    let g:nord_underline = 1
+    let g:nord_italic_comments = 1
+    let g:palenight_terminal_italics = 1
+    silent! colorscheme nord
+endif
 " Show relative line numbers
 set relativenumber
 " Make the line column blend in with the background

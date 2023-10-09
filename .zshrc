@@ -34,7 +34,7 @@ autoload -Uz compinit
 compinit
 compdef _git config  # config is a git alias for managing dotfiles
 
-source ~/.aliases
+[ -s ~/.aliases ] && source ~/.aliases
 
 export EDITOR=vim
 eval 

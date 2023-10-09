@@ -56,10 +56,17 @@ endfunction
 set laststatus=2
 set statusline=%!ActiveStatus()
 
-hi User1 guibg=#88c0d0 guifg=#2e3440 ctermfg=black ctermbg=darkcyan
-hi User2 guibg=#3b4252 guifg=#88c0d0 ctermfg=darkcyan ctermbg=black
-hi User3 guifg=#3b4252 ctermfg=black
-hi User4 guifg=#e5e9f0
+if $SESSION_THEME == 'nightfly'
+    hi User1 guibg=#ae81ff guifg=#080808 ctermfg=black ctermbg=darkcyan
+    hi User2 guibg=#011627 guifg=#ae81ff ctermfg=darkcyan ctermbg=black
+    hi User3 guifg=#011627 ctermfg=black
+    hi User4 guifg=#bdc1c6
+else
+    hi User1 guibg=#88c0d0 guifg=#2e3440 ctermfg=black ctermbg=darkcyan
+    hi User2 guibg=#3b4252 guifg=#88c0d0 ctermfg=darkcyan ctermbg=black
+    hi User3 guifg=#3b4252 ctermfg=black
+    hi User4 guifg=#e5e9f0
+endif
 
 augroup status
     autocmd!
