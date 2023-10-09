@@ -1,0 +1,27 @@
+#!/bin/bash
+
+alias nah="git reset --hard && git clean -df"
+alias wip="git add . && git commit -q -m 'wip'"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Open the repo for the current project in a browser tab
+function repo {
+    SSH_URL=$(git config --get remote.origin.url)
+    HTTPS_URL=${SSH_URL/ssh:\/\/git@/https:\/\/}
+    chromium "$HTTPS_URL"
+}
+
+# Decode encrypted AWS auth messages
+function aws-decode {
+    aws sts decode-authorization-message --encoded-message "$1" --query DecodedMessage --output text | jq '.context.action'
+}
+
+function openpr() {
+    BRANCH=`git branch | grep "*"`
+    REPO="$1"
+    PARENT_BRANCH="$2"
+
+    echo "$1"
+    echo "$2"
+}
