@@ -1,0 +1,50 @@
+window {
+  /* Entire wofi window */
+  font-family: Roboto;
+  background-color: transparent;
+  color: #2E3440;
+}
+
+#outer-box {
+  /* Selector for a box that everything else sits inside of */
+}
+
+#input {
+  /* Selector for the text box for filtering items */
+  background-color: #ECEFF4;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  color: #2E3440;
+}
+
+#scroll {
+  /* Selector for the scroll window containing inner-box */
+}
+
+#inner-box {
+  /* Selector for the box containing all entries */
+  background-color: #ECEFF4;
+}
+
+#entry {
+  /* Selector for the box containing text and if present, images */
+  padding: 1em 2em;
+}
+
+#entry:selected {
+  /* Selects the currently focused entry in the list. Useful for changing the highlight color, or removing it altogether. */
+  background-color: #81A1C1;
+}
+
+#text {
+  /* Selector for the box containing the name of the program/option inserted */
+}
+
+#text:selected {
+  /* Selects the currently focused text inside of the entry in the list. Can change the color of the selected text, background color, etc. */
+}
+
+#img {
+  /* Selector for images displayed in entries */
+}
