@@ -1,0 +1,183 @@
+snippet #! "#!/usr/bin/env python" b
+#!/usr/bin/env python
+$0
+endsnippet
+
+snippet ifmain "ifmain" b
+if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
+	${1:${VISUAL:main()}}
+endsnippet
+
+snippet with "with" b
+with ${1:expr}`!p snip.rv = ' as ' if t[2] else ''`${2:var}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+snippet for "for loop" b
+for ${1:item} in ${2:iterable}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+global !p
+SINGLE_QUOTE = "'"
+DOUBLE_QUOTE = '"'
+
+
+class Arg(object):
+	def __init__(self, arg):
+		self.arg = arg
+		name_and_type = arg.split('=')[0].split(':')
+		self.name = name_and_type[0].strip()
+		self.type = name_and_type[1].strip() if len(name_and_type) == 2 else None
+
+	def __str__(self):
+		return self.name
+
+	def is_kwarg(self):
+		return '=' in self.arg
+
+	def is_vararg(self):
+		return '*' in self.name
+
+
+def get_quoting_style(snip):
+	style = snip.opt('g:ultisnips_python_quoting_style', 'single')
+	if style == 'single':
+		return SINGLE_QUOTE
+	return DOUBLE_QUOTE
+
+
+def triple_quotes(snip):
+	style = snip.opt('g:ultisnips_python_triple_quoting_style', 'double')
+	return (SINGLE_QUOTE if style == 'single' else DOUBLE_QUOTE) * 3
+
+
+def get_args(arglist):
+	args = []
+	n = len(arglist)
+	i = 0
+	while i < n:
+		l_bracket = 0
+		start = i
+		while i < n and (l_bracket > 0 or arglist[i] != ','):
+			if arglist[i] == '[':
+				l_bracket += 1
+			elif arglist[i] == ']' and l_bracket > 0:
+				l_bracket -= 1
+			i += 1
+		arg = arglist[start:i]
+		if arg:
+			args.append(Arg(arg))
+		i += 1
+
+	args = [arg for arg in args if arg.name != 'self']
+
+	return args
+
+
+def write_docstring_args(args, snip):
+	if not args:
+		return
+	
+	for arg in args:
+		snip += format_arg(arg)
+
+
+def write_init_body(args, parents, snip):
+	parents = [p.strip() for p in parents.split(',')]
+	parents = [p for p in parents if p != 'object']
+
+	for p in parents:
+		snip += p + '.__init__(self)'
+
+	for arg in filter(lambda arg: not arg.is_vararg(), args):
+		snip += f'self.{arg} = {arg}'
+
+
+def write_function_docstring(t, snip):
+	snip.rv = ''
+	snip >> 1
+	
+	args = get_args(t[2])
+	if args:
+		write_docstring_args(args, snip)
+
+	snip += format_return()
+
+
+def format_arg(arg):
+	return f':param {arg}: TODO'
+
+
+def format_return():
+	return ':returns: TODO'
+
+endglobal
+
+snippet class "class with docstrings" b
+class ${1:MyClass}(${2:object}):
+	`!p snip.rv = triple_quotes(snip)`${3:TODO: Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+	def __init__(self$4):
+		`!p snip.rv = triple_quotes(snip)`
+		${5:TODO: to be defined.}`!p
+snip.rv = ''
+snip >> 2
+args = get_args(t[4])
+
+if args:
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+write_docstring_args(args, snip)
+snip += triple_quotes(snip)
+write_init_body(args, t[2], snip)
+`
+		$0
+endsnippet
+
+snippet def "function or class method" b
+def ${1:fname}(`!p
+if snip.indent:
+	snip.rv = 'self' + (', ' if len(t[2]) else '')`${2:arg1}):
+	`!p snip.rv = triple_quotes(snip)`
+	${4:TODO: Docstring for $1.}
+	`!p write_function_docstring(t, snip)`
+	`!p snip.rv = triple_quotes(snip)`
+	$0
+endsnippet
+
+snippet classmet "class method" b
+@classmethod
+def ${1:fname}(`!p snip.rv = 'cls' + (', ' if len(t[2]) else '')`${2:arg1}):
+	`!p snip.rv = triple_quotes(snip)`
+	${4:TODO: Docstring for $1.}
+	`!p write_function_docstring(t, snip)`
+	`!p snip.rv = triple_quotes(snip)`
+	$0
+endsnippet
+
+snippet staticmet "static method" b
+@staticmethod
+def ${1:fname}(${2:arg1}):
+	`!p snip.rv = triple_quotes(snip)`
+	${4:TODO: Docstring for $1.}
+	`!p write_function_docstring(t, snip)`
+	`!p snip.rv = triple_quotes(snip)`
+	$0
+endsnippet
+
+snippet prop "read only property" b
+@property
+def ${1:name}(self):
+	`!p snip.rv = triple_quotes(snip)`
+	${4:TODO: Docstring for $1.}
+	`!p snip.rv = triple_quotes(snip)`
+	$0
+endsnippet
+
+snippet /(^|(?<=\W))\./  "self." r
+self.
+endsnippet
+
+snippet from "from module import name" b
+from ${1:module} import ${2:stuff}
+endsnippet

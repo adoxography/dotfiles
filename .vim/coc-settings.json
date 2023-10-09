@@ -1,0 +1,11 @@
+{
+  "suggest.noselect": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
+}
