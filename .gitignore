@@ -1,0 +1,6 @@
+# config repo location
+.cfg
+
+# Generated tags
+tags
+tags.lock
