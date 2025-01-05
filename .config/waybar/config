@@ -12,6 +12,7 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery"],
+    "reload_style_on_change": true,
     // Modules configuration
     "hyprland/workspaces": {
     //     "disable-scroll": true,
