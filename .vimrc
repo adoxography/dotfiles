@@ -28,11 +28,16 @@ set termguicolors
 
 if $SESSION_THEME == "nightfly"
     silent! colorscheme nightfly
+elseif $SESSION_THEME == "moss"
+    let g:moss_italic = 1
+    let g:moss_underline = 1
+    let g:moss_italic_comments = 1
+    call SourceIfExists("~/.vim/moss.vim")
+    silent! colorscheme moss
 else
     let g:nord_italic = 1
     let g:nord_underline = 1
     let g:nord_italic_comments = 1
-    let g:palenight_terminal_italics = 1
     silent! colorscheme nord
 endif
 " Show relative line numbers
@@ -173,6 +178,7 @@ if has ("autocmd")
         " Source .vimrc after functions.vim is saved
         autocmd BufWritePost functions.vim nested source ~/.vimrc
         autocmd BufWritePost statusline.vim nested source ~/.vimrc
+        autocmd BufWritePost moss.vim nested source ~/.vimrc
     augroup END
     " }}}
 

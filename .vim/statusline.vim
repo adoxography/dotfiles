@@ -61,6 +61,11 @@ if $SESSION_THEME == 'nightfly'
     hi User2 guibg=#011627 guifg=#ae81ff ctermfg=darkcyan ctermbg=black
     hi User3 guifg=#011627 ctermfg=black
     hi User4 guifg=#bdc1c6
+elseif $SESSION_THEME == 'moss'
+    hi User1 guibg=#9ac1a1 guifg=#2a3830 ctermfg=black ctermbg=darkcyan
+    hi User2 guibg=#35473c guifg=#9ac1a1 ctermfg=darkcyan ctermbg=black
+    hi User3 guifg=#35473c ctermfg=black
+    hi User4 guifg=#e3ebe6
 else
     hi User1 guibg=#88c0d0 guifg=#2e3440 ctermfg=black ctermbg=darkcyan
     hi User2 guibg=#3b4252 guifg=#88c0d0 ctermfg=darkcyan ctermbg=black

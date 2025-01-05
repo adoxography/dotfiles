@@ -22,6 +22,10 @@ window#waybar.nightfly {
     color: #d6deeb;
 }
 
+window#waybar.moss {
+    color: #e3ebe6;
+}
+
 window#waybar.hidden {
     opacity: 0.2;
 }
@@ -53,6 +57,11 @@ button:hover {
 .nightfly #workspaces button {
     color: #1d3b53;
     background-color: #d6deeb;
+}
+
+.moss #workspaces button {
+    color: #2a3830;
+    background-color: #e3ebe6;
 }
 
 #workspaces button:first-child {
@@ -97,6 +106,22 @@ button:hover {
 
 .nightfly #mode {
     background-color: #1d3b53;
+}
+
+.moss #workspaces button:hover {
+    background-color: #9ac1a1;
+}
+
+.moss #workspaces button.active {
+    background-color: #73aaa1;
+}
+
+.moss #workspaces button.urgent {
+    background-color: #c29e9b;
+}
+
+.moss #mode {
+    background-color: #465c4f;
 }
 
 #clock,
@@ -157,6 +182,25 @@ button:hover {
     color: #d6deeb;
 }
 
+.moss #clock,
+.moss #battery,
+.moss #cpu,
+.moss #memory,
+.moss #disk,
+.moss #temperature,
+.moss #backlight,
+.moss #network,
+.moss #pulseaudio,
+.moss #wireplumber,
+.moss #custom-media,
+.moss #tray,
+.moss #mode,
+.moss #idle_inhibitor,
+.moss #scratchpad,
+.moss #mpd {
+    color: #e3ebe6;
+}
+
 #window,
 #workspaces {
     margin: 0 4px;
@@ -202,6 +246,21 @@ button:hover {
     color: #1d3b53;
 }
 
+.moss #clock {
+    background-color: #465c4f;
+}
+
+.moss #battery {
+    background-color: #e3ebe6;
+    color: #2a3830;
+}
+
+.moss #battery.charging,
+.moss #battery.plugged {
+    background-color: #87b278;
+    color: #2a3830;
+}
+
 @keyframes blink-nord {
     to {
         background-color: #e5e9f0;
@@ -213,6 +272,13 @@ button:hover {
     to {
         background-color: #d6deeb;
         color: #1d3b53;
+    }
+}
+
+@keyframes blink-moss {
+    to {
+        background-color: #e3ebe6;
+        color: #2a3830;
     }
 }
 
@@ -233,6 +299,12 @@ button:hover {
     background-color: #fc514e;
     color: #d6deeb;
     animation-name: blink-nightfly;
+}
+
+.moss #battery.critical:not(.charging) {
+    background-color: #c29e9b;
+    color: #e3ebe6;
+    animation-name: blink-moss;
 }
 
 .nord label:focus {
@@ -341,4 +413,58 @@ button:hover {
 .nightfly #temperature.critical {
     background-color: #eb4d4b;
     color: #1d3b53;
+}
+
+.moss label:focus {
+    background-color: #2a3830;
+}
+
+.moss #cpu {
+    background-color: #87b278;
+    color: #2a3830;
+}
+
+.moss #memory {
+    background-color: #9d9bc2;
+    color: #2a3830;
+}
+
+.moss #disk {
+    background-color: #cf9b71;
+    color: #2a3830;
+}
+
+.moss #backlight {
+    background-color: #a9b898;
+    color: #2a3830;
+}
+
+.moss #network {
+    background-color: #3d8d8e;
+    color: #2a3830;
+}
+
+.moss #network.disconnected {
+    background-color: #c29e9b;
+    color: #2a3830;
+}
+
+.moss #pulseaudio {
+    background-color: #cabc75;
+    color: #2a3830;
+}
+
+.moss #pulseaudio.muted {
+    background-color: #a9b898;
+    color: #2a3830;
+}
+
+.moss #temperature {
+    background-color: #cf9b71;
+    color: #2a3830;
+}
+
+.moss #temperature.critical {
+    background-color: #eb4d4b;
+    color: #2e3440;
 }
