@@ -2,7 +2,7 @@
     "name": "$SESSION_THEME",
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    // "height": 24, // Waybar height (to be removed for auto height)
     "margin-top": 5,
     "margin-bottom": 0,
     "margin-right": 20,
@@ -37,7 +37,6 @@
         "format": "{}"
     },
     "clock": {
-        "timezone": "America/Winnipeg",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}",
         "format": "<span> </span>{:%I:%M %p}"
